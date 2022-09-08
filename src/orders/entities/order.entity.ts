@@ -1,10 +1,10 @@
 // eslint-disable-next-line prettier/prettier
 import { Max, Min } from "class-validator";
-import { Customer } from 'src/customer/customer.entity';
+import { Customers } from 'src/customer/customer.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Order {
+export class Orders {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -13,6 +13,6 @@ export class Order {
   @Max(1000)
   price: number;
 
-  @ManyToOne(() => Customer, (cust) => cust.orders)
-  customer: Customer;
+  @ManyToOne(() => Customers, (cust) => cust.orders)
+  customer: Customers;
 }

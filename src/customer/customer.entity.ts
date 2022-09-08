@@ -1,4 +1,4 @@
-import { Order } from 'src/orders/entities/order.entity';
+import { Orders } from 'src/orders/entities/order.entity';
 import {
   Column,
   CreateDateColumn,
@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Customer {
+export class Customers {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -75,6 +75,6 @@ export class Customer {
   })
   postal_code: string;
 
-  @OneToMany(() => Order, (order) => order.customer)
-  orders: Order[];
+  @OneToMany(() => Orders, (order) => order.customer)
+  orders: Orders[];
 }
