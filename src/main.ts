@@ -1,9 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
+import * as session from 'express-session';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +9,13 @@ async function bootstrap() {
   // AppModule,
   // new FastifyAdapter(),
   // );
+  app.use(
+    session({
+      secret: 'ofer',
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
   app.setGlobalPrefix('api');
   await app.listen(3000);
 }

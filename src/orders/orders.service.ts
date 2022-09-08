@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Customer } from 'src/customer/customer.entity';
+import { Customers } from 'src/customer/customer.entity';
 import { CustomerService } from 'src/customer/customer.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './entities/order.entity';
+import { Orders } from './entities/order.entity';
 import { OrdersRepository } from './orders.repository';
 
 @Injectable()
