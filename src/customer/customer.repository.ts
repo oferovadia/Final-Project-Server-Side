@@ -5,15 +5,23 @@ import { Customers } from './customer.entity';
 
 @EntityRepository(Customers)
 export class CustomerRepository extends Repository<Customers> {
+  
   findByEmail(email: string) {
     return this.findOne({ email });
   }
 
   async getOrders(id: number): Promise<Orders[]> {
+    // const customer = await this.findOne({
+    //   where: { 'customer.id = :customerId':id },
+    //   relations: ['orders'],
+    // });
+    // return customer.orders;
+
     const customer = await this.findOne({
-      where: { id },
+      where: { orders: { customer: id} },
       relations: ['orders'],
-    });
+    })
     return customer.orders;
+
   }
 }

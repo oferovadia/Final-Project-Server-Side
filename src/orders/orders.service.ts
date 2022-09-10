@@ -12,6 +12,7 @@ export class OrdersService {
     private ordersRipo: OrdersRepository,
     private customerService: CustomerService,
   ) {}
+
   // async create(createOrderDto: CreateOrderDto) {
   //   const { customerId, price } = createOrderDto;
   //   const customer = await this.customerService.find(customerId);

@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Orders } from 'src/orders/entities/order.entity';
+import { OrdersRepository } from 'src/orders/orders.repository';
 import { Customers } from './customer.entity';
 import { CustomerRepository } from './customer.repository';
 import { LoginCustomerDto } from './login.customer.dto';
@@ -12,7 +13,10 @@ import { RegisterCustomerDto } from './register.customer.dto';
 
 @Injectable()
 export class CustomerService {
-  constructor(private customerRipo: CustomerRepository) {}
+  constructor(
+    private customerRipo: CustomerRepository,
+    private ordersRipo: OrdersRepository,
+  ) {}
 
   getCustomers(): Promise<Customers[]> {
     return this.customerRipo.find();
