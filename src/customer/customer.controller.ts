@@ -39,7 +39,6 @@ export class CustomerController {
     const userLogged = await this.customerService.loginCustomer(loggedCustomer);
     if (userLogged) {
       this.customerService.createLoggedCookie(session, userLogged);
-      console.log(session.userLoggedCookie);
     }
     return userLogged;
   }
@@ -60,19 +59,19 @@ export class CustomerController {
     return registedUser;
   }
 
-  // @Get(':id')
-  // findCustomer(
-  //   @Param(
-  //     'id',
-  //     new ParseIntPipe({
-  //       errorHttpStatusCode: HttpStatus.BAD_REQUEST,
-  //     }),
-  //   )
-  //   id: number,
-  // ) {
-  //   console.log(typeof id);
-  //   return this.customerService.find(id);
-  // }
+  @Get(':id')
+  findCustomer(
+    @Param('id')
+    id: number,
+  ) {
+    return this.customerService.find(id);
+  }
+
+  @Get(':id/orders')
+  async getOrders(@Param() id: number) {
+    const orders = await this.customerService.getOrders(+id);
+    return orders;
+  }
 
   // @Get('/email/:email')
   // findCustomerByEmail(@Param('email') email: string) {
@@ -80,13 +79,13 @@ export class CustomerController {
   //   return this.customerService.findByEmail(email);
   // }
 
-  // // @Get('orders')
-  // // @UsePipes(CustomValidatorPipe)
-  // // orders(
-  // //   @Query('asc', new DefaultValuePipe(true), ParseBoolPipe) asc: boolean,
-  // // ) {
-  // //   return asc;
-  // // }
+  // @Get('orders')
+  // @UsePipes(CustomValidatorPipe)
+  // orders(
+  //   @Query('asc', new DefaultValuePipe(true), ParseBoolPipe) asc: boolean,
+  // ) {
+  //   return asc;
+  // }
 
   // @Get(':id/orders')
   // async customerOrders(@Param('id', ParseIntPipe) id: number) {
