@@ -1,12 +1,14 @@
-import { IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
 import {
   Column,
-  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Categories } from 'src/categories/entities/category.entity';
+import { Photos } from './photos.entity';
+import { Product_Details } from './productDetails.entity';
 
 @Entity()
 export class Products {
@@ -14,12 +16,26 @@ export class Products {
   id: number;
 
   @Column({
-    nullable: true,
-    type: 'int',
+    nullable: false,
+    type: 'varchar',
+    length: 45,
   })
-  parent_id: number;
+  product_name: string;
 
-//   @ManyToOne(() => Customers, (cust) => cust.orders)
-//   @JoinColumn({ name: 'customer_id' })
-//   customer: Customers;
+  @Column({
+    nullable: true,
+    type: 'varchar',
+    length: 250,
+  })
+  description: string;
+
+  @OneToMany(() => Photos, (photo) => photo.product)
+  photos: Photos[];
+
+  @ManyToOne(() => Categories, (category) => category.products)
+  @JoinColumn({ name: 'category_id' })
+  category: Categories;
+
+  @OneToMany(() => Product_Details, (productDetails) => productDetails.product)
+  productDetails: Product_Details[];
 }
