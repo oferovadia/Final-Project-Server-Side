@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
+import { Products } from 'src/products/entities/product.entity';
 import {
   Column,
   CreateDateColumn,
@@ -27,4 +28,7 @@ export class Categories {
 
   @OneToMany(() => Categories, (category) => category.parent_id)
   childCategories: Categories[];
+
+  @OneToMany(() => Products, (product) => product.id)
+  products: Products[];
 }
