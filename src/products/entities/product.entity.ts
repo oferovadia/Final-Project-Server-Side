@@ -4,11 +4,13 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Categories } from 'src/categories/entities/category.entity';
 import { Photos } from './photos.entity';
 import { Product_Details } from './productDetails.entity';
+import { Cart_Details } from 'src/cart/entities/cartDetails.entity';
 
 @Entity()
 export class Products {
@@ -29,7 +31,7 @@ export class Products {
   })
   description: string;
 
-  @OneToMany(() => Photos, (photo) => photo.product)
+  @OneToMany(() => Photos, (photo) => photo.product, { eager: true })
   photos: Photos[];
 
   @ManyToOne(() => Categories, (category) => category.products)
@@ -38,4 +40,7 @@ export class Products {
 
   @OneToMany(() => Product_Details, (productDetails) => productDetails.product)
   productDetails: Product_Details[];
+
+  @OneToMany(() => Cart_Details, (cartDetails) => cartDetails.product)
+  cartDetails: Cart_Details[];
 }
