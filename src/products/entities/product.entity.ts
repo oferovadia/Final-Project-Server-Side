@@ -38,7 +38,11 @@ export class Products {
   @JoinColumn({ name: 'category_id' })
   category: Categories;
 
-  @OneToMany(() => Product_Details, (productDetails) => productDetails.product)
+  @OneToMany(
+    () => Product_Details,
+    (productDetails) => productDetails.product,
+    { eager: true },
+  )
   productDetails: Product_Details[];
 
   @OneToMany(() => Cart_Details, (cartDetails) => cartDetails.product)

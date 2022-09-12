@@ -7,11 +7,15 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { OrdersService } from 'src/orders/orders.service';
 import { CartService } from './cart.service';
 
 @Controller('cart')
 export class CartController {
-  constructor(private readonly cartService: CartService) {}
+  constructor(
+    private readonly cartService: CartService,
+    private readonly ordersService: OrdersService,
+  ) {}
 
   @Get()
   findAll() {
@@ -26,5 +30,10 @@ export class CartController {
   @Get('/user/:id')
   findByCustomer(@Param('id') id: string) {
     return this.cartService.findCartByCustomerID(+id);
+  }
+
+  @Post()
+  createOrderFromCart() {
+    return this.ordersService.create();
   }
 }

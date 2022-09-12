@@ -1,13 +1,27 @@
-import { IsNotEmpty, IsNumber, Max, Min } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
-export class CreateOrderDto {
+export class OrderDTO {
   @IsNotEmpty()
-  @IsNumber()
-  @Min(1)
-  @Max(1000)
-  price: number;
+  order_date: Date;
 
   @IsNotEmpty()
-  @IsNumber()
-  customerId: number;
+  required_date: Date;
+
+  @IsNotEmpty()
+  shipped_date: Date;
+
+  @IsNotEmpty()
+  country: string;
+
+  @IsNotEmpty()
+  city: string;
+
+  @IsNotEmpty()
+  address: string;
+
+  @IsNotEmpty()
+  postal_code: string;
+
+  @IsNotEmpty()
+  phone: string;
 }
