@@ -12,7 +12,6 @@ import { Cart_Details } from './entities/cartDetails.entity';
 export class CartService {
   constructor(
     @InjectRepository(Cart) private cartRipo: Repository<Cart>,
-    @InjectRepository(Customers) private customerRipo: Repository<Customers>,
     @InjectRepository(Cart_Details)
     private cartDetailsRipo: Repository<Cart_Details>,
   ) {}

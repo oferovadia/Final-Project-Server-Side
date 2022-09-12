@@ -4,8 +4,9 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Orders } from 'src/orders/entities/order.entity';
-import { OrdersRepository } from 'src/orders/orders.repository';
+import { Repository } from 'typeorm';
 import { Customers } from './customer.entity';
 import { CustomerRepository } from './customer.repository';
 import { LoginCustomerDto } from './login.customer.dto';
@@ -15,7 +16,7 @@ import { RegisterCustomerDto } from './register.customer.dto';
 export class CustomerService {
   constructor(
     private customerRipo: CustomerRepository,
-    private ordersRipo: OrdersRepository,
+    @InjectRepository(Orders) private ordersRipo: Repository<Orders>,
   ) {}
 
   getCustomers(): Promise<Customers[]> {

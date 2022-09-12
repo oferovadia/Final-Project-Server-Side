@@ -74,6 +74,8 @@ export class Orders {
   @JoinColumn({ name: 'customer_id' })
   customer: Customers;
 
-  @OneToMany(() => Order_Details, (orderDetails) => orderDetails.order)
+  @OneToMany(() => Order_Details, (orderDetails) => orderDetails.order, {
+    eager: true,
+  })
   orderDetails: Order_Details;
 }
