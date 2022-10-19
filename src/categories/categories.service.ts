@@ -17,7 +17,7 @@ export class CategoriesService {
   }
 
   findAll() {
-    return `This action returns all categories`;
+    return this.categoryRipo.find();
   }
 
   findByCategoryID(name: string) {
@@ -25,6 +25,37 @@ export class CategoriesService {
       where: { category: { category_name: name } },
       relations: ['category'],
     });
+  }
+
+  async testFunc(name: string) {
+    const category = await this.categoryRipo.find({
+      where: { category_name: name },
+    });
+    const category_id = category[0]['id'];
+    // console.log(category_id);
+    
+    const allProducts = [];
+    const products = await this.productsRipo.find({
+      where: { category: category_id },
+      relations: ['category'],
+    });
+    
+    // for (const category of categories) {
+    //   const products = await this.productsRipo.find({
+    //     where: { product: { id: product.id } },
+    //     // select: [''],
+    //   });
+    //   const productDetails = await this.productDetailsRipo.find({
+    //     where: { product: { id: product.id } },
+    //   });
+    //   const newProduct = this.productsRipo.create({
+    //     ...product,
+    //     photos,
+    //     productDetails,
+    //   });
+    //   allProducts.push(newProduct);
+    // }
+    return products;
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
