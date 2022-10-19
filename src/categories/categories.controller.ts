@@ -20,10 +20,10 @@ export class CategoriesController {
   //   return this.categoriesService.create(createCategoryDto);
   // }
 
-  // @Get()
-  // findAll() {
-  //   return this.categoriesService.findAll();
-  // }
+  @Get()
+  findAll() {
+    return this.categoriesService.testFunc('clothes');
+  }
 
   @Get(':name')
   findOne(@Param('name') name: string) {
