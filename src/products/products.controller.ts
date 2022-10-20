@@ -27,4 +27,9 @@ export class ProductsController {
   getTest() {
     return this.productsService.getTest();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.productsService.findByProductID(id);
+  }
 }
