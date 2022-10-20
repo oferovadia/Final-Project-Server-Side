@@ -20,7 +20,21 @@ export class CategoriesService {
     return this.categoryRipo.find();
   }
 
-  findByCategoryID(name: string) {
+  async findCategoryIdByCategoryName(name: string): Promise<Categories> {
+    console.log(name);
+    return await this.categoryRipo.findOne({
+      where: { category_name: name },
+    });
+  }
+
+  async findByCategoryName(name: string) {
+    if (name.includes('All')) {
+      const categoryId = await this.findCategoryIdByCategoryName(name.slice(3));
+      return this.productsRipo.find({
+        where: { category: { parent_id: categoryId.id } },
+        relations: ['category'],
+      });
+    }
     return this.productsRipo.find({
       where: { category: { category_name: name } },
       relations: ['category'],
@@ -32,14 +46,13 @@ export class CategoriesService {
       where: { category_name: name },
     });
     const category_id = category[0]['id'];
-    // console.log(category_id);
-    
+
     const allProducts = [];
     const products = await this.productsRipo.find({
       where: { category: category_id },
       relations: ['category'],
     });
-    
+
     // for (const category of categories) {
     //   const products = await this.productsRipo.find({
     //     where: { product: { id: product.id } },

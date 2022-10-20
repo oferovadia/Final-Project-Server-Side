@@ -27,7 +27,7 @@ export class CategoriesController {
 
   @Get(':name')
   findOne(@Param('name') name: string) {
-    return this.categoriesService.findByCategoryID(name);
+    return this.categoriesService.findByCategoryName(name);
   }
 
   // @Patch(':id')

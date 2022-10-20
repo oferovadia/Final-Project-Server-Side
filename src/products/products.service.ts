@@ -72,7 +72,7 @@ export class ProductsService {
     return products;
   }
 
-  async getProductByID() {
-    return this.productsRipo.findOne(1);
+  async findByProductID(id) {
+    return this.productsRipo.findOne(id);
   }
 }
