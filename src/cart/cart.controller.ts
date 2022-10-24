@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Session,
 } from '@nestjs/common';
 import { OrdersService } from 'src/orders/orders.service';
 import { CartService } from './cart.service';
@@ -18,18 +19,10 @@ export class CartController {
   ) {}
 
   @Get()
-  findAll() {
-    return this.cartService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cartService.findCartByID(+id);
-  }
-
-  @Get('/user/:id')
-  findByCustomer(@Param('id') id: string) {
-    return this.cartService.findCartByCustomerID(+id);
+  async findCartDetails(@Session() session: Record<string, any>) {
+    const userID = session.userLoggedCookie;
+    console.log(userID);
+    return this.cartService.findCartByCustomerID(3);
   }
 
   @Post()

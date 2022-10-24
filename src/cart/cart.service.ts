@@ -32,14 +32,14 @@ export class CartService {
   async findCartByCustomerID(id: number) {
     const details = [];
     const cartAndCustomer = await this.cartRipo.findOne({
-      where: { id },
+      where: { customer: id },
       relations: ['customer'],
     });
     if (cartAndCustomer) {
-      const cartD = await this.cartDetailsRipo.find({
+      const cartDetails = await this.cartDetailsRipo.find({
         where: { cart: { id: cartAndCustomer.id } },
       });
-      details.push(cartAndCustomer, cartD);
+      details.push(cartAndCustomer, cartDetails);
     }
     return details;
   }
