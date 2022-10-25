@@ -13,19 +13,9 @@ import { ProductsService } from './products.service';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  // @Post()
-  // create(@Body() createProductDto: CreateProductDto) {
-  //   return this.productsService.create(createProductDto);
-  // }
-
   @Get()
   getAllProducts() {
     return this.productsService.findAll();
-  }
-
-  @Get('/test')
-  getTest() {
-    return this.productsService.getTest();
   }
 
   @Get(':id')
