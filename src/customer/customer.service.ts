@@ -12,7 +12,7 @@ export class CustomerService {
   constructor(
     private customerRipo: CustomerRepository,
     @InjectRepository(Orders) private ordersRipo: Repository<Orders>,
-  ) {}
+  ) { }
 
   getCustomers(): Promise<Customers[]> {
     return this.customerRipo.find();
@@ -46,6 +46,10 @@ export class CustomerService {
     session.userLoggedCookie = user.id;
   }
 
+  emptyLoggedCookie(session: Record<string, any>) {
+    session.userLoggedCookie = '';
+  }
+
   find(id: number): Promise<Customers> {
     return this.customerRipo.findOne(id);
   }
@@ -58,4 +62,5 @@ export class CustomerService {
     const orders = await this.customerRipo.getOrders(id);
     return orders;
   }
+
 }

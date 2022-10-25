@@ -22,7 +22,7 @@ import { RegisterCustomerDto } from './register.customer.dto';
 
 @Controller('customer')
 export class CustomerController {
-  constructor(private readonly customerService: CustomerService) {}
+  constructor(private readonly customerService: CustomerService) { }
 
   @Get()
   //get all customers
@@ -57,6 +57,12 @@ export class CustomerController {
       this.customerService.createLoggedCookie(session, registedUser);
     }
     return registedUser;
+  }
+
+  @Get('logout')
+  async logout(@Session() session: Record<string, any>) {
+    this.customerService.emptyLoggedCookie(session);
+    return true;
   }
 
   @Get(':id')
