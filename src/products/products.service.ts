@@ -62,15 +62,15 @@ export class ProductsService {
     // });
   }
 
-  async getTest() {
-    const products = this.productsRipo.find({
-      select: ['product_name', 'description', 'id'],
+  // async getProductByID() {
+  //   const products = this.productsRipo.find({
+  //     select: ['product_name', 'description', 'id'],
 
-      // order: { product_name: 'DESC' },
-      relations: ['photos', 'productDetails'],
-    });
-    return products;
-  }
+  //     // order: { product_name: 'DESC' },
+  //     relations: ['photos', 'productDetails'],
+  //   });
+  //   return products;
+  // }
 
   async findByProductID(id) {
     return this.productsRipo.findOne(id);
