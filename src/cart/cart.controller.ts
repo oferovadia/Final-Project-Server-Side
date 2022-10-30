@@ -16,7 +16,7 @@ export class CartController {
   constructor(
     private readonly cartService: CartService,
     private readonly ordersService: OrdersService,
-  ) { }
+  ) {}
 
   @Get()
   async findCartDetails(@Session() session: Record<string, any>) {

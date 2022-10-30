@@ -16,6 +16,18 @@ export class Cart_Details {
   id: number;
 
   @Column({
+    nullable: false,
+    type: 'int',
+  })
+  cart_id: number;
+
+  @Column({
+    nullable: false,
+    type: 'int',
+  })
+  product_id: number;
+
+  @Column({
     nullable: true,
     type: 'varchar',
     length: 10,
