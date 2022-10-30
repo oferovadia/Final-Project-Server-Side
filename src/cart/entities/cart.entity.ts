@@ -15,6 +15,12 @@ export class Cart {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({
+    nullable: false,
+    type: 'int',
+  })
+  customer_id: number;
+
   @ManyToOne(() => Customers, (customer) => customer.cart, { eager: true })
   @JoinColumn({ name: 'customer_id' })
   customer: Customers;

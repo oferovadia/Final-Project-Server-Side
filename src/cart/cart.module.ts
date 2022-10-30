@@ -10,6 +10,10 @@ import { Orders } from 'src/orders/entities/order.entity';
 import { CustomerService } from 'src/customer/customer.service';
 import { CustomerRepository } from 'src/customer/customer.repository';
 import { Order_Details } from 'src/orders/entities/orderDetails.entity';
+import { ProductsService } from 'src/products/products.service';
+import { Products } from 'src/products/entities/product.entity';
+import { Photos } from 'src/products/entities/photos.entity';
+import { Product_Details } from 'src/products/entities/productDetails.entity';
 
 @Module({
   imports: [
@@ -20,9 +24,18 @@ import { Order_Details } from 'src/orders/entities/orderDetails.entity';
       Orders,
       CustomerRepository,
       Order_Details,
+      Products,
+      Photos,
+      Product_Details,
     ]),
   ],
   controllers: [CartController],
-  providers: [CartService, OrdersService, CustomerService],
+  providers: [
+    CartService,
+    OrdersService,
+    CustomerService,
+    Products,
+    ProductsService,
+  ],
 })
 export class CartModule {}
