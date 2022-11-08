@@ -32,7 +32,6 @@ export class OrdersService {
       phone: '0522223038',
     };
     const cart = await this.cartRipo.findOne(4);
-    console.log(cart);
     const order = this.ordersRipo.create(object);
     // await this.ordersRipo.save(order);
     return order;

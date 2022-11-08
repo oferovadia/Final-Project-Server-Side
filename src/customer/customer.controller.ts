@@ -38,9 +38,9 @@ export class CustomerController {
   ) {
     const userLogged = await this.customerService.loginCustomer(loggedCustomer);
     if (userLogged) {
-      this.customerService.createLoggedCookie(session, userLogged);
+      return this.customerService.createLoggedCookie(session, userLogged);
     }
-    return userLogged;
+    // return userLogged;
   }
 
   @Post('register')

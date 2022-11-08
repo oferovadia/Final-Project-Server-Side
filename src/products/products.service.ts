@@ -21,7 +21,6 @@ export class ProductsService {
     for (const product of products) {
       const photos = await this.photosRipo.find({
         where: { product: { id: product.id } },
-        // select: [''],
       });
       const productDetails = await this.productDetailsRipo.find({
         where: { product: { id: product.id } },
