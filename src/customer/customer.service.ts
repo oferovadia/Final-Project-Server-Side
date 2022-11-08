@@ -44,6 +44,8 @@ export class CustomerService {
 
   createLoggedCookie(session: Record<string, any>, user) {
     session.userLoggedCookie = user.id;
+    session.name = user.first_name;
+    return true;
   }
 
   emptyLoggedCookie(session: Record<string, any>) {

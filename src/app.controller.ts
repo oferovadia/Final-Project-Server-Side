@@ -3,13 +3,15 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   checkCookie(@Session() session: Record<string, any>) {
-    console.log(session);
     if (session.userLoggedCookie) {
-      return true;
+      return {
+        logged: true,
+        name: session.name,
+      };
     }
     return false;
   }

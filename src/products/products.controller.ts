@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Session,
 } from '@nestjs/common';
 import { CartService } from 'src/cart/cart.service';
 import { ProductsService } from './products.service';
@@ -28,13 +29,20 @@ export class ProductsController {
   }
 
   @Post('/add')
-  async addToCart(@Body() details: object) {
-    return this.cartService.addToCart(details);
-    // return this.cartService.createCartDetails();
+  async addToCart(
+    @Body() details: object,
+    @Session() session: Record<string, any>,
+  ) {
+    return this.cartService.addToCart(details, session);
   }
 
   @Delete(':cartDetailsID')
   async removeFromCart(@Param() cartDetailsID) {
     this.cartService.removeProduct(cartDetailsID.cartDetailsID);
+  }
+
+  @Patch()
+  async updateItem(@Body() details: object) {
+    return this.cartService.updateItemQuantity(details);
   }
 }
