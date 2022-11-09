@@ -23,6 +23,8 @@ export class CartController {
     if (session.userLoggedCookie) {
       const userID = session.userLoggedCookie;
       return this.cartService.findCartByCustomerID(userID);
+    } else {
+      return false;
     }
   }
 
