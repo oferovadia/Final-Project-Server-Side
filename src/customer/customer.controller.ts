@@ -66,11 +66,8 @@ export class CustomerController {
   }
 
   @Get(':id')
-  findCustomer(
-    @Param('id')
-    id: number,
-  ) {
-    return this.customerService.find(id);
+  findCustomer(@Session() session: Record<string, any>) {
+    return this.customerService.findCustomerByID(session);
   }
 
   @Get(':id/orders')
