@@ -14,7 +14,7 @@ export class CartService {
     private cartDetailsRipo: Repository<Cart_Details>,
     // @InjectRepository(Products) private productRipo: Repository<Products>,
     private readonly productService: ProductsService,
-  ) {}
+  ) { }
 
   async findAll() {
     return this.cartRipo.find();
